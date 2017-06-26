@@ -6,7 +6,7 @@
 /*   By: apetitje <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/04 19:00:15 by apetitje          #+#    #+#             */
-/*   Updated: 2017/06/26 14:48:22 by apetitje         ###   ########.fr       */
+/*   Updated: 2017/06/26 15:17:24 by apetitje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ static void	find_file_in_directory(char *dir_path, t_list **matches,
 static char	*find_word(char *input, char **before, int *end)
 {
 	char	*word;
+	char	*t;
 
 	word = ft_strrchr(input, ' ');
 	++word;
 	*end = ft_strlen(word) - 1;
+	t = *before;
 	ft_asprintf(before, "%.*s", word - input, input);
+	ft_memdel((void **)&t);
 	while (*end >= 0 && word[*end] != '/')
 		--(*end);
 	return (word);
